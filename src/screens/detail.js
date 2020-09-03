@@ -113,7 +113,20 @@ export default class DetailScreen extends Component{
                     </View>
                 </View>
             </View>
-                
+            <View style={styles.buttonStyle}>
+                    <View style={{flex:2}} >
+                       
+                    </View>
+                    <View style={{alignItems:'flex-start' ,flex:4}} >
+                        <Button title="Onayla"  color='#731873'/>
+                    </View>
+                    <View  style={{alignItems:'flex-end',flex:4}}>
+                        <Button title="Reddet"  color='#731873'/>
+                    </View>
+                    <View style={{flex:2}} >
+                    
+                    </View>
+                </View>
         </ScrollView>
     )
   }
@@ -163,7 +176,16 @@ const styles = StyleSheet.create({
   rowRight:{
     flex:3,
     justifyContent:'center',
-    
+  },
+  buttonStyle:{
+    marginTop:5,
+    marginBottom:5,
+    height:55,
+    fontSize: 18,
+    flexDirection:'row',
+    flex:12,
+    alignItems:'center',
+    justifyContent:'center',
   }
  
 })

@@ -131,7 +131,14 @@ const styles = StyleSheet.create({
         paddingBottom: 10,
     },
     buttonStyle:{
-      marginTop:'10%'
+    marginTop:5,
+    marginBottom:5,
+    height:49,
+    justifyContent:'center',
+    fontSize: 18,
+    marginRight:'auto',
+    marginLeft:'auto',
+    width:'50%'
 
     }
 })

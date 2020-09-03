@@ -1,328 +1,174 @@
-import React, {Component} from 'react';
+import React from 'react';
+import * as eva from '@eva-design/eva';
+import { ApplicationProvider, Layout, Text } from '@ui-kitten/components';
 import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-  TouchableOpacity,
-  Image,
-  ImageBackground,
-  Dimensions
-} from 'react-native';
+    Button,View,StyleSheet,TouchableOpacity,ScrollView,Image,Dimensions
+  } from 'react-native';
+import { default as theme } from '../../theme.json';
 import {Actions} from 'react-native-router-flux';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import CustomHeader from '../customHeader';
 const { width, height } = Dimensions.get("screen");
-export default class App extends Component{
-  render(){
-    return(
-      <ImageBackground
-      source={require('../../images/baloncuklu.jpg')}
-      style={styles.ImageContainer}
-      >
-      <ScrollView>
-        <View style={{flex:1, marginBottom:5}}>
+const HomeScreen = () => (
+    <Layout style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+      <Text category='h1'>HOME</Text>
+    </Layout>
+  );
+  
+  export default () => (
+    <ApplicationProvider {...eva} theme={{ ...eva.light, ...theme }}>
+    <Layout style={{ flex: 1, }}>
+    <ScrollView>
+    <View style={{flex:1, marginBottom:5}}>
         <Image source={require('../../images/headerLogo.jpg')} style={styles.navbar} />
         </View>
-        <TouchableOpacity onPress={()=>Actions.materialRequests()}>
-          <View style={styles.cardWrapper}>
-            <View style={{ flex: 2, justifyContent: 'center', padding: 3 }}>
-              <Image source={require('../../images/stokgrountule.png')} style={styles.imageView} />
-            </View>
-            <View style={{ alignItems: 'flex-start', justifyContent: 'center', flex: 4, marginLeft: 10, marginBottom: 5, marginTop: 5 }}>
-              <Text style={styles.titleStyle}>Malzeme Talepleri</Text>
-              <Text style={styles.smallTitleStyle}>Malzeme Talebi Onayı</Text>
-            </View>
-            <TouchableOpacity
-              style={{
-                  alignItems: 'flex-end',
-                  marginRight: 10,
-                  justifyContent: 'center',
-                  flex: 1
-              }}
-            >
-              <View style={{flexDirection:'row'}}> 
-              <Text  style={{ alignItems: 'flex-start' ,marginRight:10,marginTop:2}}>14</Text>
-              <Icon
-                  name='chevron-right'
-                  color="black"
-                  size={27}
-                  style={{alignItems: 'flex-end'}}
-              />
-              </View>
+        <TouchableOpacity style={styles.container} >
+            <TouchableOpacity style={styles.cardLeft} onPress={()=>Actions.materialRequests()}>
+                <View>
+                    <Image source={require('../../images/stokgrountule.png')} style={styles.imageView} />
+                </View>
+                <View style={styles.cardTextStyle}>
+                    <Text style={{fontSize:18,}}>Malzeme Talepleri</Text>
+                    <Text style={{fontSize:12}}>Malzeme Talepleri Onayı</Text>
+                </View>
             </TouchableOpacity>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={()=>Actions.purchaseRequests()}>
-          <View style={styles.cardWrapper}>
-            <View style={{ flex: 2, justifyContent: 'center', padding: 3 }}>
-              <Image source={require('../../images/siparisonayi.png')} style={styles.imageView} />
-            </View>
-            <View style={{ alignItems: 'flex-start', justifyContent: 'center', flex: 4, marginLeft: 10, marginBottom: 5, marginTop: 5 }}>
-              <Text style={styles.titleStyle}>Satın Alma Talepleri</Text>
-              <Text style={styles.smallTitleStyle}>Talep Onayı</Text>
-            </View>
-            <TouchableOpacity
-              style={{
-                  alignItems: 'flex-end',
-                  marginRight: 10,
-                  justifyContent: 'center',
-                  flex: 1
-              }}
-            >
-            <View style={{flexDirection:'row'}}> 
-              <Text  style={{ alignItems: 'flex-start' ,marginRight:10,marginTop:2}}>14</Text>
-              <Icon
-                  name='chevron-right'
-                  color="black"
-                  size={27}
-                  style={{alignItems: 'flex-end'}}
-              />
-              </View>
+            <TouchableOpacity style={styles.cardRight} onPress={()=>Actions.purchaseRequests()}>
+                <View>
+                <Image source={require('../../images/siparisonayi.png')} style={styles.imageView} />
+                </View>
+                <View style={styles.cardTextStyle}>
+                    <Text style={{fontSize:18,}}>Satın Alma Talepleri</Text>
+                    <Text style={{fontSize:12,}}>Talep Onayı</Text>
+                </View>
             </TouchableOpacity>
-          </View>
         </TouchableOpacity>
-        <TouchableOpacity onPress={()=>Actions.tmkfApproval()}>
-          <View style={styles.cardWrapper}>
-            <View style={{ flex: 2, justifyContent: 'center', padding: 3 }}>
-              <Image source={require('../../images/siparisizleme.png')} style={styles.imageView} />
-            </View>
-            <View style={{ alignItems: 'flex-start', justifyContent: 'center', flex: 4, marginLeft: 10, marginBottom: 5, marginTop: 5 }}>
-              <Text style={styles.titleStyle}>TMKF Onayı</Text>
-              <Text style={styles.smallTitleStyle}>Bekleyen TMKF Onayları</Text>
-            </View>
-            <TouchableOpacity
-              style={{
-                  alignItems: 'flex-end',
-                  marginRight: 10,
-                  justifyContent: 'center',
-                  flex: 1
-              }}
-            >
-               <View style={{flexDirection:'row'}}> 
-              <Text  style={{ alignItems: 'flex-start' ,marginRight:10,marginTop:2}}>14</Text>
-              <Icon
-                  name='chevron-right'
-                  color="black"
-                  size={27}
-                  style={{alignItems: 'flex-end'}}
-              />
-              </View>
+        <TouchableOpacity style={styles.container}>
+            <TouchableOpacity style={styles.cardLeft} onPress={()=>Actions.tmkfApproval()}>
+                <View>
+                <Image source={require('../../images/siparisizleme.png')} style={styles.imageView} />
+                </View>
+                <View style={styles.cardTextStyle}>
+                    <Text style={{fontSize:18,}}>TMKF Onayı</Text>
+                    <Text style={{fontSize:12}}>Bekleyen TMKF Onayları</Text>
+                </View>
             </TouchableOpacity>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={()=>Actions.sisApproval()}>
-          <View style={styles.cardWrapper}>
-            <View style={{ flex: 2, justifyContent: 'center', padding: 3 }}>
-              <Image source={require('../../images/hizmet.png')} style={styles.imageView} />
-            </View>
-            <View style={{ alignItems: 'flex-start', justifyContent: 'center', flex: 4, marginLeft: 10, marginBottom: 5, marginTop: 5 }}>
-              <Text style={styles.titleStyle}>SİS Onayları</Text>
-              <Text style={styles.smallTitleStyle}>SİS Onayı</Text>
-            </View>
-            <TouchableOpacity
-              style={{
-                  alignItems: 'flex-end',
-                  marginRight: 10,
-                  justifyContent: 'center',
-                  flex: 1
-              }}
-            >
-              <View style={{flexDirection:'row'}}> 
-              <Text  style={{ alignItems: 'flex-start' ,marginRight:10,marginTop:2}}>14</Text>
-              <Icon
-                  name='chevron-right'
-                  color="black"
-                  size={27}
-                  style={{alignItems: 'flex-end'}}
-              />
-              </View>
+            <TouchableOpacity style={styles.cardRight} onPress={()=>Actions.sisApproval()}>
+                <View>
+                <Image source={require('../../images/hizmet.png')} style={styles.imageView} />
+                </View>
+                <View style={styles.cardTextStyle}>
+                    <Text style={{fontSize:18,}}>SİS Onayları</Text>
+                    <Text style={{fontSize:12,}}>SİS Onayı</Text>
+                </View>
             </TouchableOpacity>
-          </View>
         </TouchableOpacity>
-        <TouchableOpacity onPress={()=>Actions.scrapSalesApproval()}>
-          <View style={styles.cardWrapper}>
-            <View style={{ flex: 2, justifyContent: 'center', padding: 3 }}>
-              <Image source={require('../../images/instanceInvoice.png')} style={styles.imageView} />
-            </View>
-            <View style={{ alignItems: 'flex-start', justifyContent: 'center', flex: 4, marginLeft: 10, marginBottom: 5, marginTop: 5 }}>
-              <Text style={styles.titleStyle}>Hurda Satış Onayları</Text>
-              <Text style={styles.smallTitleStyle}>Hurda Satış Onayı</Text>
-            </View>
-            <TouchableOpacity
-              style={{
-                  alignItems: 'flex-end',
-                  marginRight: 10,
-                  justifyContent: 'center',
-                  flex: 1
-              }}
-            >
-             <View style={{flexDirection:'row'}}> 
-              <Text  style={{ alignItems: 'flex-start' ,marginRight:10,marginTop:2}}>14</Text>
-              <Icon
-                  name='chevron-right'
-                  color="black"
-                  size={27}
-                  style={{alignItems: 'flex-end'}}
-              />
-              </View>
+        <TouchableOpacity style={styles.container}>
+            <TouchableOpacity style={styles.cardLeft} onPress={()=>Actions.scrapSalesApproval()}>
+                <View>
+                <Image source={require('../../images/instanceInvoice.png')} style={styles.imageView} />
+                </View>
+                <View style={styles.cardTextStyle}>
+                    <Text style={{fontSize:18,}}>Hurda Satış Onayları</Text>
+                    <Text style={{fontSize:12}}>Hurda Satış Onayı</Text>
+                </View>
             </TouchableOpacity>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={()=>Actions.subcontractorSalesApproval()}>
-          <View style={styles.cardWrapper}>
-            <View style={{ flex: 2, justifyContent: 'center', padding: 3 }}>
-              <Image source={require('../../images/customerOrder.jpg')} style={styles.imageView} />
-            </View>
-            <View style={{ alignItems: 'flex-start', justifyContent: 'center', flex: 4, marginLeft: 10, marginBottom: 5, marginTop: 5 }}>
-              <Text style={styles.titleStyle}>Taşerona Satış Onayları</Text>
-              <Text style={styles.smallTitleStyle}>Taşerona Satış Onayları</Text>
-            </View>
-            <TouchableOpacity
-              style={{
-                  alignItems: 'flex-end',
-                  marginRight: 10,
-                  justifyContent: 'center',
-                  flex: 1
-              }}
-            >
-              <View style={{flexDirection:'row'}}> 
-              <Text  style={{ alignItems: 'flex-start' ,marginRight:10,marginTop:2}}>14</Text>
-              <Icon
-                  name='chevron-right'
-                  color="black"
-                  size={27}
-                  style={{alignItems: 'flex-end'}}
-              />
-              </View>
+            <TouchableOpacity style={styles.cardRight} onPress={()=>Actions.subcontractorSalesApproval()}>
+                <View>
+                <Image source={require('../../images/customerOrder.jpg')} style={styles.imageView} />
+                </View>
+                <View style={styles.cardTextStyle}>
+                    <Text style={{fontSize:18,}}>Taşerona Satış</Text>
+                    <Text style={{fontSize:18,}}>Onayları</Text>
+                    <Text style={{fontSize:12,}}>Taşerona Satış Onayları</Text>
+                </View>
             </TouchableOpacity>
-          </View>
         </TouchableOpacity>
-        <TouchableOpacity onPress={()=>Actions.contractApproval()}>
-          <View style={styles.cardWrapper}>
-            <View style={{ flex: 2, justifyContent: 'center', padding: 3 }}>
-              <Image source={require('../../images/subContract.png')} style={styles.imageView} />
-            </View>
-            <View style={{ alignItems: 'flex-start', justifyContent: 'center', flex: 4, marginLeft: 10, marginBottom: 5, marginTop: 5 }}>
-              <Text style={styles.titleStyle}>Sözleşme Onayları (Taşeron)</Text>
-              <Text style={styles.smallTitleStyle}>Sözleşme Onayları (Taşeron)</Text>
-            </View>
-            <TouchableOpacity
-              style={{
-                  alignItems: 'flex-end',
-                  marginRight: 10,
-                  justifyContent: 'center',
-                  flex: 1
-              }}
-            >
-              <View style={{flexDirection:'row'}}> 
-              <Text  style={{ alignItems: 'flex-start' ,marginRight:10,marginTop:2}}>14</Text>
-              <Icon
-                  name='chevron-right'
-                  color="black"
-                  size={27}
-                  style={{alignItems: 'flex-end'}}
-              />
-              </View>
+        <TouchableOpacity style={styles.container}>
+            <TouchableOpacity style={styles.cardLeft} onPress={()=>Actions.contractApproval()}>
+                <View>
+                <Image source={require('../../images/subContract.png')} style={styles.imageView} />
+                </View>
+                <View style={styles.cardTextStyle}>
+                    <Text style={{fontSize:18,}}>Sözleşme Onayları</Text>
+                    <Text style={{fontSize:18,}}>(Taşeron)</Text>
+                    <Text style={{fontSize:12}}>Sözleşme Onayları (Taşeron)</Text>
+                </View>
             </TouchableOpacity>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity >
-          <View style={styles.cardWrapper}>
-            <View style={{ flex: 2, justifyContent: 'center', padding: 3 }}>
-              <Image source={require('../../images/cikis.png')} style={styles.imageView} />
-            </View>
-            <View style={{ alignItems: 'flex-start', justifyContent: 'center', flex: 4, marginLeft: 10, marginBottom: 5, marginTop: 5 }}>
-              <Text style={styles.titleStyle}>Çıkış</Text>
-              <Text style={styles.smallTitleStyle}>Oturumu Kapat</Text>
-            </View>
-            <TouchableOpacity
-              style={{
-                  alignItems: 'flex-end',
-                  marginRight: 10,
-                  justifyContent: 'center',
-                  flex: 1
-              }}
-            >
-              <View style={{flexDirection:'row'}}> 
-              <Icon
-                  name='chevron-right'
-                  color="black"
-                  size={27}
-                  style={{alignItems: 'flex-end'}}
-              />
-              </View>
+            <TouchableOpacity style={styles.cardRight}>
+                <View>
+                <Image source={require('../../images/cikis.png')} style={styles.imageView} />
+                </View>
+                <View style={styles.cardTextStyle}>
+                    <Text style={{fontSize:18,}}>Çıkış</Text>
+                    <Text style={{fontSize:12,}}>Oturumu Kapat</Text>
+                </View>
             </TouchableOpacity>
-          </View>
         </TouchableOpacity>
-      </ScrollView>
-      </ImageBackground>
-    )
-  }
-}
-const styles = StyleSheet.create({
-  navbar:{
-    width: '100%',
-    resizeMode:'contain',
-    height:100,
-    backgroundColor:'#8b3d8d'
+    </ScrollView>
+    </Layout>
+  </ApplicationProvider>
+  );
+/////#DCAEFC   ,,,   ECD3FE
   
-  },
-  titleStyle: {
-      fontSize: 18,
-      color: 'black'
-  },
-  smallTitleStyle: {
-      fontSize: 13,
-      color: 'black'
-  },
-  ImageContainer: {
-    flex:1,
-     padding: 0,
-     zIndex: 1,
-   }, 
-  cardStyle: {
-      flex: 3,
-      flexDirection: "row",
-      width: '30%'
-
-  },
-  cardWrapper: {
-      height: 'auto',
-      marginTop: 5,
-      marginBottom: 5,
-      marginLeft: 5,
-      marginRight: 5,
-      borderColor: 'gray',
-      borderBottomWidth: 0.8,
-      flexDirection: 'row',
-      flex: 1,
-      shadowColor: "#000",
-      shadowOffset: {
-          width: 0,
-          height: 5,
+const styles = StyleSheet.create({
+    navbar:{
+        width: '100%',
+        resizeMode:'contain',
+        height:80,
+        backgroundColor:'#8b3d8d'
+      
       },
-      shadowOpacity: 0.25,
-      shadowRadius: 3.84,
-      elevation: 0.2
-  },
-  descriptionWrapper: {
-      height: 'auto',
-      marginBottom: 5,
-      marginLeft: 5,
-      marginRight: 5,
-      borderLeftWidth: 0.2,
-      borderRightWidth: 0.2,
-      borderBottomWidth: 0.2,
-      borderColor: 'gray',
-      flexDirection: 'row',
-      flex: 1
-  },
-  imageView: {
-      width: 70,
-      height: 70,
-      resizeMode:'contain'
-  },
-})
+    container:{
+        flexDirection:'row',
+        flex:1,
+    },
+    cardLeft:{
+      opacity: 0.9,
+      backgroundColor:'white',
+        height:200,
+        flex:4,
+        margin:8,
+        alignItems:'center',
+        justifyContent:'center',
+        borderRadius:20,
+        borderColor: 'gray',
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 5,
+        },
+        shadowOpacity: 1,
+        shadowRadius: 3.84,
+        elevation: 15,
+    },
+    cardRight:{
+      opacity: 0.9,
+      backgroundColor:'white',
+        height:200,
+        flex:4,
+        margin:8,
+        alignItems:'center',
+        justifyContent:'center',
+        borderRadius:20,
+        borderColor: 'gray',
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 5,
+        },
+        shadowOpacity: 1,
+        shadowRadius: 3.84,
+        elevation: 15,
+    },
+    imageView:{
+        width:60,
+        height:60,
+        resizeMode:'contain'
+    },
+    cardTextStyle:{
+        marginTop:20,
+        fontSize:20,
+        color:'black',
+        alignItems:'center',
+        justifyContent:'center'
+    }
+  })

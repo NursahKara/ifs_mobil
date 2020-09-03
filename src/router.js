@@ -8,6 +8,7 @@ import SisApprovalScreen from './screens/sisApproval'
 import ScrapSalesApprovalScreen from './screens/scrapSalesApproval'
 import SubcontractorSalesApprovalScreen from './screens/subcontractorSalesApproval'
 import ContractApprovalScreen from './screens/contractApproval'
+import DetailScreen from './screens/detail'
 import App from './screens/index'
 import LoginScren from './screens/login'
 const RouterComp = () => {
@@ -15,7 +16,7 @@ const RouterComp = () => {
         <Router titleStyle={{ color: '#000' }}  >
             <Scene key='root' hideNavBar={true}>
                 <Scene key='main'>
-                <Scene key='login'
+                    <Scene key='login'
                         component={LoginScren}
                         title='Login'
                         hideNavBar={true}
@@ -59,6 +60,11 @@ const RouterComp = () => {
                     <Scene key='contractApproval'
                         component={ContractApprovalScreen}
                         title='Sözleşme Onayları'
+                        hideNavBar={true}
+                    />
+                     <Scene key='detail'
+                        component={DetailScreen}
+                        title='Talep Detayları'
                         hideNavBar={true}
                     />
                 </Scene>

@@ -19,13 +19,9 @@ const { width, height } = Dimensions.get("screen");
 export default class MaterialRequestsScreen extends Component{
   render(){
     return(
-      <ImageBackground
-      source={require('../../images/baloncuklu.jpg')}
-      style={styles.ImageContainer}
-      >
-        <CustomHeader title="Malzeme Talepleri" isHome={false} bg_white={true} navigation={this.props.navigation}/>
         <ScrollView>
-          <TouchableOpacity style={styles.card}>
+           <CustomHeader title="Malzeme Talepleri" isHome={false} bg_white={true} navigation={this.props.navigation}/>
+          <TouchableOpacity style={styles.card} onPress={()=>Actions.detail()}>
             <View style={styles.cardContentStart}>
               <View style={styles.rowLeft}>
                 <Text style={{fontSize:18}}>Talep No:</Text>
@@ -131,37 +127,31 @@ export default class MaterialRequestsScreen extends Component{
             </View>
           </TouchableOpacity>
         </ScrollView>
-      </ImageBackground>
     )
   }
 }
 const styles = StyleSheet.create({
-  ImageContainer: {
-    flex:1,
-     padding: 0,
-     zIndex: 1,
-   }, 
    card: {
       width:'90%',
       height:200,
       borderColor: 'gray',
       flex:1,
       shadowColor: "#000",
-      shadowOffset: {
-          width: 0,
-          height: 5,
-      },
-      shadowOpacity: 0.25,
-      shadowRadius: 3.84,
-      elevation: 0.2,
+        shadowOffset: {
+            width: 0,
+            height: 5,
+        },
+        shadowOpacity: 1,
+        shadowRadius: 3.84,
+        elevation: 15,
       marginLeft:'5%',
       marginRight:'5%',
       marginTop:'2%',
       alignItems:'center',
-    justifyContent:"center",
-    opacity: 0.7,
-    backgroundColor:'white',
-    borderRadius:20
+      justifyContent:"center",
+      opacity: 0.9,
+      backgroundColor:'white',
+      borderRadius:20
   },
   cardContentStart:{
     height:'20%',
@@ -195,12 +185,6 @@ const styles = StyleSheet.create({
     marginBottom:'2%',
     color:'black'
   },
-  cardButton:{
-    height:'20%',
-    width:'100%',
-    alignItems:'center',
-    justifyContent:"center"
-  },
   rowLeft:{
     alignItems:'flex-start',
     flex:2,
@@ -211,6 +195,4 @@ const styles = StyleSheet.create({
     justifyContent:'center',
     
   }
-  
-
 })

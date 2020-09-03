@@ -6,7 +6,7 @@ export default class CustomHeader extends Component {
   render() {
     return (
       <View style={{
-        flexDirection: 'row', height: 70, borderBottomWidth: 0.2, shadowColor: "#000",
+        flexDirection: 'row', height: 80, borderBottomWidth: 0.2, shadowColor: "#000",
         shadowOffset: {
           width: 0,
           height: 5,
@@ -45,7 +45,7 @@ export default class CustomHeader extends Component {
               </Text>
         </View>
         <View style={{ flex: 1, justifyContent: 'center'}}>
-        <Image source={require('../images/logo.jpg')} style={{width:55,height:55,resizeMode:'contain'}}/>
+        <Image source={require('../images/logo.jpg')} style={{width:60,height:60,resizeMode:'contain'}}/>
         </View>
         <View style={{ flex: 1 }}></View>
       </View>

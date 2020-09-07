@@ -113,18 +113,39 @@ export default class DetailScreen extends Component{
                     </View>
                 </View>
             </View>
-            <View style={styles.buttonStyle}>
+            {/* <View style={styles.buttonStyle}>
                     <View style={{flex:2}} >
                        
                     </View>
                     <View style={{alignItems:'flex-start' ,flex:4}} >
-                        <Button title="Onayla"  color='#731873'/>
+                        <Button title="Onayla"  color='#731873' width='100%'/>
                     </View>
                     <View  style={{alignItems:'flex-end',flex:4}}>
                         <Button title="Reddet"  color='#731873'/>
                     </View>
                     <View style={{flex:2}} >
                     
+                    </View>
+                </View> */}
+                <View style={{flex:1,flexDirection:"row"}}>
+                    <View style={{flex:2}} >
+                    </View>
+                    <View style={{flex:4,margin:7}}>
+                    <Button title="reddet" color="#FF1239"/>
+                    </View>
+                    <View style={{flex:4,margin:7}}>
+                        <Button title="onayla" color="#731873"/>
+                    </View>
+                    <View style={{flex:2}} >
+                    </View>
+                </View>
+                <View style={{flex:1,flexDirection:"row"}}>
+                    <View style={{flex:2}} >
+                    </View>
+                    <View style={{flex:8,marginLeft:2,marginRight:2,marginBottom:10}}>
+                        <Button title="Bekle" color="#BBC2C7"/>
+                    </View>
+                    <View style={{flex:2}} >
                     </View>
                 </View>
         </ScrollView>
@@ -177,15 +198,5 @@ const styles = StyleSheet.create({
     flex:3,
     justifyContent:'center',
   },
-  buttonStyle:{
-    marginTop:5,
-    marginBottom:5,
-    height:55,
-    fontSize: 18,
-    flexDirection:'row',
-    flex:12,
-    alignItems:'center',
-    justifyContent:'center',
-  }
  
 })

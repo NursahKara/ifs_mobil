@@ -64,7 +64,7 @@ export default class LoginScreen extends Component{
                 <View style={styles.buttonStyle}>
                 <Button
                     title='Giriş'
-                    color='#731873' 
+                    color='#8b3d8d' 
                     onPress={()=>Actions.home()}
                     />
                 </View>

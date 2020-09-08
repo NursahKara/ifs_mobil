@@ -134,7 +134,7 @@ export default class DetailScreen extends Component{
                     <Button title="reddet" color="#FF1239"/>
                     </View>
                     <View style={{flex:4,margin:7}}>
-                        <Button title="onayla" color="#731873"/>
+                        <Button title="onayla" color="#8b3d8d"/>
                     </View>
                     <View style={{flex:2}} >
                     </View>

@@ -11,6 +11,9 @@ import ContractApprovalScreen from './screens/contractApproval'
 import DetailScreen from './screens/detail'
 import App from './screens/index'
 import LoginScren from './screens/login'
+import SubjectDetailScreen from './screens/subjectDetails'
+import ProfileScreen from './screens/profile'
+
 const RouterComp = () => {
     return (
         <Router titleStyle={{ color: '#000' }}  >
@@ -64,7 +67,17 @@ const RouterComp = () => {
                     />
                      <Scene key='detail'
                         component={DetailScreen}
-                        title='Talep Detayları'
+                        title='Detay'
+                        hideNavBar={true}
+                    />
+                     <Scene key='subjectdetail'
+                        component={SubjectDetailScreen}
+                        title='Konu Detayları'
+                        hideNavBar={true}
+                    />
+                      <Scene key='profile'
+                        component={ProfileScreen}
+                        title='Profil'
                         hideNavBar={true}
                     />
                 </Scene>

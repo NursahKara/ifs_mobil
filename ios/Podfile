@@ -10,6 +10,8 @@ target 'ifs_mobil' do
 
 
 
+  pod 'RNCCheckbox', :path => '../node_modules/@react-native-community/checkbox'
+
   target 'ifs_mobilTests' do
     inherit! :complete
     # Pods for testing

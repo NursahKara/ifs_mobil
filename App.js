@@ -3,7 +3,7 @@ import Router from './src/router';
 import signalr from 'react-native-signalr';
 import PushNotification from 'react-native-push-notification';
 import BackgroundTask from 'react-native-background-task';
-const connection = signalr.hubConnection('http://192.168.41.165/NotificationWebService');
+const connection = signalr.hubConnection('http://192.168.41.182/NotificationWebService');
 connection.logging = true;
 const notificationHub = connection.createHubProxy('notificationHub');
 notificationHub.on("ReceiveNotification", function (notification) {
@@ -30,7 +30,7 @@ BackgroundTask.define(() => {
         });
         notificationHub.invoke('DeleteNotifications')
             .fail(() => {
-                console.warn('error when calling DeleteNotifications')
+                console.warn('error when calling DeleteNotifications backgrountask')
             })
         BackgroundTask.finish();
     });
@@ -41,6 +41,12 @@ BackgroundTask.define(() => {
     });
 })
 export default class App extends Component {
+    // constructor(props) {
+    //     super(props);
+    //     this.state = {
+    //         token: ''
+    //     };
+    // }
   componentDidMount() {
     BackgroundTask.schedule();
     connection.start().done(() => {

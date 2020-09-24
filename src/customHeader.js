@@ -39,13 +39,13 @@ export default class CustomHeader extends Component {
           }
 
         </View>
-        <View style={{ flex: 10, justifyContent: 'center' }}>
-              <Text style={{ textAlign: 'center', color: 'white',fontSize:20 }}>
+        <View style={{ flex: 9.5, justifyContent: 'center' }}>
+              <Text style={{ textAlign: 'center', color: 'white',fontSize:25 }}>
                 {this.props.title}
               </Text>
         </View>
-        <View style={{ flex: 1, justifyContent: 'center'}}>
-        <Image source={require('../images/logo.jpg')} style={{width:60,height:60,resizeMode:'contain'}}/>
+        <View style={{ flex: 1.5, justifyContent: 'center'}}>
+        <Image source={require('../images/logo.jpg')} style={{width:80,height:80}}/>
         </View>
         <View style={{ flex: 1 }}></View>
       </View>

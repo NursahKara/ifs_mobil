@@ -1,174 +1,254 @@
-import React from 'react';
+import React, { useEffect, useState, useRef, Component } from 'react';
 import * as eva from '@eva-design/eva';
 import { ApplicationProvider, Layout, Text } from '@ui-kitten/components';
 import {
-    Button,View,StyleSheet,TouchableOpacity,ScrollView,Image,Dimensions
-  } from 'react-native';
+  Button, View, StyleSheet, TouchableOpacity, ScrollView, Image, Dimensions, ActivityIndicator, FlatList, DrawerLayoutAndroid
+} from 'react-native';
 import { default as theme } from '../../theme.json';
-import {Actions} from 'react-native-router-flux';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import { Actions } from 'react-native-router-flux';
+import CustomHeader from '../customHeader';
+import { cos } from 'react-native-reanimated';
+import { ThemeService } from '@ui-kitten/components/theme/theme/theme.service';
+import { request } from 'react-native-permissions';
 const { width, height } = Dimensions.get("screen");
-const HomeScreen = () => (
-    <Layout style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <Text category='h1'>HOME</Text>
-    </Layout>
-  );
+function drawerOpen() {
+  const drawler = useRef(null);
+  drawler.current.openDrawer()
+}
+
+// const navigationView = (
   
-  export default () => (
-    <ApplicationProvider {...eva} theme={{ ...eva.light, ...theme }}>
-    <Layout style={{ flex: 1, }}>
-    <ScrollView>
-    <View style={{flex:1, marginBottom:5}}>
-        <Image source={require('../../images/headerLogo.jpg')} style={styles.navbar} />
-        </View>
-        <TouchableOpacity style={styles.container} >
-            <TouchableOpacity style={styles.cardLeft} onPress={()=>Actions.materialRequests()}>
-                <View>
-                    <Image source={require('../../images/stokgrountule.png')} style={styles.imageView} />
-                </View>
-                <View style={styles.cardTextStyle}>
-                    <Text style={{fontSize:18,}}>Malzeme Talepleri</Text>
-                    <Text style={{fontSize:12}}>Malzeme Talepleri Onayı</Text>
-                </View>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.cardRight} onPress={()=>Actions.purchaseRequests()}>
-                <View>
-                <Image source={require('../../images/siparisonayi.png')} style={styles.imageView} />
-                </View>
-                <View style={styles.cardTextStyle}>
-                    <Text style={{fontSize:18,}}>Satın Alma Talepleri</Text>
-                    <Text style={{fontSize:12,}}>Talep Onayı</Text>
-                </View>
-            </TouchableOpacity>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.container}>
-            <TouchableOpacity style={styles.cardLeft} onPress={()=>Actions.tmkfApproval()}>
-                <View>
-                <Image source={require('../../images/siparisizleme.png')} style={styles.imageView} />
-                </View>
-                <View style={styles.cardTextStyle}>
-                    <Text style={{fontSize:18,}}>TMKF Onayı</Text>
-                    <Text style={{fontSize:12}}>Bekleyen TMKF Onayları</Text>
-                </View>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.cardRight} onPress={()=>Actions.sisApproval()}>
-                <View>
-                <Image source={require('../../images/hizmet.png')} style={styles.imageView} />
-                </View>
-                <View style={styles.cardTextStyle}>
-                    <Text style={{fontSize:18,}}>SİS Onayları</Text>
-                    <Text style={{fontSize:12,}}>SİS Onayı</Text>
-                </View>
-            </TouchableOpacity>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.container}>
-            <TouchableOpacity style={styles.cardLeft} onPress={()=>Actions.scrapSalesApproval()}>
-                <View>
-                <Image source={require('../../images/instanceInvoice.png')} style={styles.imageView} />
-                </View>
-                <View style={styles.cardTextStyle}>
-                    <Text style={{fontSize:18,}}>Hurda Satış Onayları</Text>
-                    <Text style={{fontSize:12}}>Hurda Satış Onayı</Text>
-                </View>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.cardRight} onPress={()=>Actions.subcontractorSalesApproval()}>
-                <View>
-                <Image source={require('../../images/customerOrder.jpg')} style={styles.imageView} />
-                </View>
-                <View style={styles.cardTextStyle}>
-                    <Text style={{fontSize:18,}}>Taşerona Satış</Text>
-                    <Text style={{fontSize:18,}}>Onayları</Text>
-                    <Text style={{fontSize:12,}}>Taşerona Satış Onayları</Text>
-                </View>
-            </TouchableOpacity>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.container}>
-            <TouchableOpacity style={styles.cardLeft} onPress={()=>Actions.contractApproval()}>
-                <View>
-                <Image source={require('../../images/subContract.png')} style={styles.imageView} />
-                </View>
-                <View style={styles.cardTextStyle}>
-                    <Text style={{fontSize:18,}}>Sözleşme Onayları</Text>
-                    <Text style={{fontSize:18,}}>(Taşeron)</Text>
-                    <Text style={{fontSize:12}}>Sözleşme Onayları (Taşeron)</Text>
-                </View>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.cardRight}>
-                <View>
-                <Image source={require('../../images/cikis.png')} style={styles.imageView} />
-                </View>
-                <View style={styles.cardTextStyle}>
-                    <Text style={{fontSize:18,}}>Çıkış</Text>
-                    <Text style={{fontSize:12,}}>Oturumu Kapat</Text>
-                </View>
-            </TouchableOpacity>
-        </TouchableOpacity>
-    </ScrollView>
-    </Layout>
-  </ApplicationProvider>
-  );
-/////#DCAEFC   ,,,   ECD3FE
-  
-const styles = StyleSheet.create({
-    navbar:{
-        width: '100%',
-        resizeMode:'contain',
-        height:80,
-        backgroundColor:'#8b3d8d'
-      
-      },
-    container:{
-        flexDirection:'row',
-        flex:1,
-    },
-    cardLeft:{
-      opacity: 0.9,
-      backgroundColor:'white',
-        height:200,
-        flex:4,
-        margin:8,
-        alignItems:'center',
-        justifyContent:'center',
-        borderRadius:20,
-        borderColor: 'gray',
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 5,
-        },
-        shadowOpacity: 1,
-        shadowRadius: 3.84,
-        elevation: 15,
-    },
-    cardRight:{
-      opacity: 0.9,
-      backgroundColor:'white',
-        height:200,
-        flex:4,
-        margin:8,
-        alignItems:'center',
-        justifyContent:'center',
-        borderRadius:20,
-        borderColor: 'gray',
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 5,
-        },
-        shadowOpacity: 1,
-        shadowRadius: 3.84,
-        elevation: 15,
-    },
-    imageView:{
-        width:60,
-        height:60,
-        resizeMode:'contain'
-    },
-    cardTextStyle:{
-        marginTop:20,
-        fontSize:20,
-        color:'black',
-        alignItems:'center',
-        justifyContent:'center'
+  // <ScrollView>
+  //   <View style={{ marginBottom: 10, flex: 1, padding: 10 }}>
+  //     <TouchableOpacity style={{ marginTop: 20, flexDirection: 'row' }} onPress={() => Actions.profile({token:props.token})}>
+  //       <View style={{ flex: 1 }}>
+  //         <Image source={require('../../images/user.png')} />
+  //       </View>
+  //       <View style={{ flex: 5 }}>
+  //         <Text style={{ fontSize: 20, marginLeft: 15 }}>Profil</Text>
+  //       </View>
+  //     </TouchableOpacity>
+  //     <TouchableOpacity style={{ marginTop: 20, flexDirection: 'row' }} onPress={() => props.navigation.navigate('Home')}>
+  //       <View style={{ flex: 1 }}>
+  //         <Image source={require('../../images/logout.png')} />
+  //       </View>
+  //       <View style={{ flex: 5 }}>
+  //         <Text style={{ fontSize: 20, marginLeft: 15 }}>Çıkış</Text>
+  //       </View>
+  //     </TouchableOpacity>
+  //   </View>
+  // </ScrollView>
+// );
+// const token=props.token;
+
+export default class App extends Component {
+  constructor(props) {
+    super(props);
+    this.drawler=React.createRef();
+    this.state = {
+      isLoading: true,
+      data: [],
+      isLogout:false,
+      selected:""
     }
-  })
+    
+    fetch('http://192.168.41.182/NotificationService/GetNotificationSubjects', {
+      method: 'GET',
+      headers: new Headers({
+        'Authorization': 'bearer '+ ' ' +this.props.token
+      }), 
+    })
+      .then((response) => response.json())
+      .then((responsejson) => {
+        this.setState({
+          isLoading: false,
+          data: responsejson.subjects,
+        })
+      })
+      .catch((error) => console.error(error));
+  }
+  LogOut =()=>{
+    fetch('http://192.168.41.182/NotificationService/LogOut', {
+        method: 'GET',
+        headers: new Headers({
+          'Authorization': 'bearer '+ ' ' +this.props.token
+        }), 
+      })
+        .then((response) => response.json())
+        .then((responsejson) => {
+          this.setState({
+            isLoading: false,
+            isLogout: responsejson.success,
+          })
+        })
+        .catch((error) => console.error(error));
+        console.log(this.state.isLogout)
+        if(this.state.isLogout===true){
+          this.setState({isLoading:true})
+          Actions.login();
+          console.log("TRUEEEEEE")
+        }
+        else{
+          console.log("ERROOOOORRRRRR")
+        }
+   
+  }
+  componentDidMount() {
+    
+  }
+ 
+  render() {
+    // console.log("index token:::::", this.props.token);
+    let { isLoading, data } = this.state;
+   
+    let imagePath = "";
+    if (isLoading) {
+      return (
+        <View style={{marginTop:height/2.25}}>
+          <ActivityIndicator size="large" animating color="black" />
+        </View>
+      )
+    }
+    else{
+      return (
+        <ApplicationProvider {...eva} theme={{ ...eva.light, ...theme }}>
+          <DrawerLayoutAndroid
+            drawerWidth={300}
+            drawerPosition="left"
+            renderNavigationView={() =>
+            <ScrollView>
+              <View style={{ marginBottom: 10, flex: 1, padding: 10 }}>
+                <TouchableOpacity style={{ marginTop: 20, flexDirection: 'row' }} onPress={() => Actions.profile({token:this.props.token})}>
+                  <View style={{ flex: 1 }}>
+                    <Image source={require('../../images/user.png')} />
+                  </View>
+                  <View style={{ flex: 5 }}>
+                    <Text style={{ fontSize: 20, marginLeft: 15 }}>Profil</Text>
+                  </View>
+                </TouchableOpacity>
+                <TouchableOpacity style={{ marginTop: 20, flexDirection: 'row' }} onPress={this.LogOut.bind(this)}>
+                  <View style={{ flex: 1 }}>
+                    <Image source={require('../../images/logout.png')} />
+                  </View>
+                  <View style={{ flex: 5 }}>
+                    <Text style={{ fontSize: 20, marginLeft: 15 }}>Çıkış</Text>
+                  </View>
+                </TouchableOpacity>
+              </View>
+            </ScrollView>}
+            ref={this.drawler}
+          >
+            <ScrollView>
+              <View style={{ flex: 1, marginBottom: 5, flexDirection: "row", backgroundColor: '#8b3d8d', height: 80, }}>
+                <TouchableOpacity style={{ flex: 1, alignItems: "flex-start", paddingTop: 15 }} onPress={() => this.drawler.current.openDrawer()}>
+                  <Image source={require('../../images/open-menu.png')} style={styles.menuStyle} />
+                </TouchableOpacity>
+                <View style={{ flex: 11, alignItems: "flex-end" }}>
+                  <Image source={require('../../images/headerLogo.jpg')} style={styles.navbar} />
+                </View>
+              </View>
+              <TouchableOpacity style={styles.container} >
+                <View style={{ flex: 1, padding: 24 }}>
+                  <FlatList
+                    data={data}
+                    keyExtractor={({ id }, index) => id}
+                    renderItem={({ item }) => (
+                      
+                      <TouchableOpacity style={styles.cardLeft} onPress={() => Actions.subjectdetail({token:this.props.token,subject:data,selected:item})}>
+                        <View>
+                          <Image source={request(item.IconPath)} style={styles.imageView} />
+                        </View>
+                        <View style={styles.cardTextStyle}>
+                          <Text style={{ fontSize: 18, }}>{item.Description}</Text>
+                          <Text style={{ fontSize: 12 }}>{item.SmallDescription}</Text>
+                          <Text>{item.SubjectCount}</Text>
+                          
+                          {console.log("imagePath::::::::::::::::::",item.IconPath)}
+                        </View>
+                      </TouchableOpacity>
+                    )}
+                    keyExtractor={(item) => item.ID}
+                  />
+                </View>
+              </TouchableOpacity>
+            </ScrollView>
+          </DrawerLayoutAndroid>
+        </ApplicationProvider>
+      );
+    }
+    
+  }
+}
+
+/////#DCAEFC   ,,,   ECD3FE
+
+const styles = StyleSheet.create({
+  menuStyle: {
+    width: 50,
+    height: 50,
+    resizeMode: 'contain',
+
+
+  },
+  navbar: {
+    width: '100%',
+    resizeMode: 'contain',
+    height: 80
+
+
+  },
+  container: {
+    flexDirection: 'row',
+    flex: 1,
+  },
+  cardLeft: {
+    opacity: 0.9,
+    backgroundColor: 'white',
+    height: 200,
+    flex: 4,
+    margin: 8,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 20,
+    borderColor: 'gray',
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 5,
+    },
+    shadowOpacity: 1,
+    shadowRadius: 3.84,
+    elevation: 15,
+  },
+  cardRight: {
+    opacity: 0.9,
+    backgroundColor: 'white',
+    height: 200,
+    flex: 4,
+    margin: 8,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 20,
+    borderColor: 'gray',
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 5,
+    },
+    shadowOpacity: 1,
+    shadowRadius: 3.84,
+    elevation: 15,
+  },
+  imageView: {
+    width: 60,
+    height: 60,
+    resizeMode: 'contain'
+  },
+  cardTextStyle: {
+    marginTop: 20,
+    fontSize: 20,
+    color: 'black',
+    alignItems: 'center',
+    justifyContent: 'center'
+  }
+})

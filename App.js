@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Router from './src/router';
+import Router from './src/routerScreen';
 import signalr from 'react-native-signalr';
 import PushNotification from 'react-native-push-notification';
 import BackgroundTask from 'react-native-background-task';
@@ -54,7 +54,6 @@ export default class App extends Component {
     }).fail(() => {
         console.log('Failed');
     });
-    console.disableYellowBox = true;
   }
   render() {
     return (

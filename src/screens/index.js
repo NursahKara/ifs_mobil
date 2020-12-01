@@ -52,7 +52,7 @@ export default class App extends Component {
       selected:""
     }
     
-    fetch('http://192.168.41.182/NotificationService/GetNotificationSubjects', {
+    fetch('http://192.168.41.182/NotificationWebService/GetNotificationSubjects', {
       method: 'GET',
       headers: new Headers({
         'Authorization': 'bearer '+ ' ' +this.props.token
@@ -68,7 +68,7 @@ export default class App extends Component {
       .catch((error) => console.error(error));
   }
   LogOut =()=>{
-    fetch('http://192.168.41.182/NotificationService/LogOut', {
+    fetch('http://192.168.41.182/NotificationWebService/LogOut', {
         method: 'GET',
         headers: new Headers({
           'Authorization': 'bearer '+ ' ' +this.props.token

@@ -28,7 +28,7 @@ export default class LoginScreen extends Component {
             dataSuccess: false,
             token: '',
             isLoading: false,
-
+            disableInput: false
         };
     }
 
@@ -81,8 +81,16 @@ export default class LoginScreen extends Component {
                                 <Button
                                     title='Giriş'
                                     color='#f47500'
-
-                                    onPress={getToken(this.state.username, this.state.password)}
+                                    disabled={this.state.disableInput}
+                                    onPress={() => {
+                                        this.setState({
+                                            disableInput: true
+                                        });
+                                        getToken(this.state.username, this.state.password);
+                                        this.setState({
+                                            disableInput: false
+                                        });
+                                    }}
 
                                 />
                             </View>

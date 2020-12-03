@@ -43,13 +43,28 @@ import { signalrConn, backgroundTaskConn } from './src/service/loginFetch';
 //     });
 // })
 //signalrConn();
+
 export default class App extends Component {
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {
-    //         token: ''
-    //     };
-    // }
+    constructor(props) {
+        super(props);
+        this.state = {
+            token: ''
+        };
+    }
+    // readToken = async () => {
+    //     try {
+    //         const value = await AsyncStorage.getItem('token');
+    //         const parsedValue = JSON.parse(value);
+    //         console.log(parsedValue);
+    //         if (parsedValue !== null) {
+    //             this.setState({
+    //                token:parsedValue
+    //             })
+    //         }
+    //     } catch (e) {
+    //         // error reading value
+    //     }
+    //   }
     componentDidMount() {
         // BackgroundTask.schedule();
         // connection.start().done(() => {
@@ -58,6 +73,7 @@ export default class App extends Component {
         //     console.log('Failed');
         // });
         //backgroundTaskConn();
+        // this.readToken();
     }
     render() {
         return (
